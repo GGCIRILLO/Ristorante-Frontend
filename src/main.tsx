@@ -1,7 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import "./tailwind-directives.css"; // Prima le direttive Tailwind
 import "./index.css"; // Poi i tuoi stili personalizzati
 import App from "./App.tsx";
 
