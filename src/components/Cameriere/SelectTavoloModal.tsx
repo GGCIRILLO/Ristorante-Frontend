@@ -6,9 +6,9 @@ import {
   Transition,
   TransitionChild,
 } from "@headlessui/react";
-import { useCambiaStatoTavolo, useTavoliLiberi } from "../hooks/tavoli";
-import { useCreateOrdine } from "../hooks/ordini";
-import type { Tavolo } from "../types";
+import { useCambiaStatoTavolo, useTavoliLiberi } from "../../hooks/tavoli";
+import { useCreateOrdine } from "../../hooks/ordini";
+import type { Tavolo } from "../../types";
 
 interface SelectTavoloModalProps {
   isOpen: boolean;

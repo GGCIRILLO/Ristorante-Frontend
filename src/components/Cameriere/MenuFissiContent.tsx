@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useMenuFissi } from "../hooks/menuFissi";
-import { useAggiungiMenuFissoOrdine } from "../hooks/pietanze";
-import type { MenuFissoCompleto } from "../types";
+import { useMenuFissi } from "../../hooks/menuFissi";
+import { useAggiungiMenuFissoOrdine } from "../../hooks/pietanze";
+import type { MenuFissoCompleto } from "../../types";
 
 interface MenuFissiContentProps {
   ordineId: string | null;

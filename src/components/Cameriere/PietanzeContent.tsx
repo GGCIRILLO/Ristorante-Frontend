@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { usePietanze, useAggiungiPietanzaOrdine } from "../hooks/pietanze";
-import { CategoriePietanze, type Pietanza } from "../types";
+import { usePietanze, useAggiungiPietanzaOrdine } from "../../hooks/pietanze";
+import { CategoriePietanze, type Pietanza } from "../../types";
 
 interface PietanzeContentProps {
   ordineId: string | null;

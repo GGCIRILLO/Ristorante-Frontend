@@ -1,11 +1,11 @@
 import type { FC } from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Tabs } from "../components/Tabs";
-import { SelectTavoloModal } from "../components/SelectTavoloModal";
-import { PietanzeContent } from "../components/PietanzeContent";
-import { MenuFissiContent } from "../components/MenuFissiContent";
-import { OrdineCorrenteContent } from "../components/OrdineCorrenteContent";
+import { Tabs } from "../components/Cameriere/Tabs";
+import { SelectTavoloModal } from "../components/Cameriere/SelectTavoloModal";
+import { PietanzeContent } from "../components/Cameriere/PietanzeContent";
+import { MenuFissiContent } from "../components/Cameriere/MenuFissiContent";
+import { OrdineCorrenteContent } from "../components/Cameriere/OrdineCorrenteContent";
 import { Icons } from "../assets";
 
 const CamerierePage: FC = () => {

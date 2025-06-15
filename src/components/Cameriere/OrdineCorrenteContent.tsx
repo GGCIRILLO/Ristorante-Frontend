@@ -1,5 +1,5 @@
-import { useOrdineById } from "../hooks/ordini";
-import { useRistorante } from "../hooks/ristorante";
+import { useOrdineById } from "../../hooks/ordini";
+import { useRistorante } from "../../hooks/ristorante";
 
 interface OrdineCorrenteContentProps {
   ordineId: string | null;
