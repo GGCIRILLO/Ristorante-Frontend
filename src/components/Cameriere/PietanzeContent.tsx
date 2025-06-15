@@ -93,8 +93,12 @@ export const PietanzeContent: React.FC<PietanzeContentProps> = ({
 
   return (
     <div className="p-4 h-full flex flex-col">
+      <h2 className="text-xl font-semibold text-gray-800 mb-3">
+        Pietanze disponibili
+      </h2>
+
       {/* Dropdown per il filtro delle categorie */}
-      <div className="mb-4">
+      <div className="mb-3">
         <label
           htmlFor="categoriaFilter"
           className="block text-sm font-medium text-gray-700 mb-1"
@@ -120,8 +124,8 @@ export const PietanzeContent: React.FC<PietanzeContentProps> = ({
       </div>
 
       {/* Tabella delle pietanze */}
-      <div className="overflow-hidden border border-gray-200 rounded-lg mb-4">
-        <div className="overflow-y-auto max-h-[calc(100vh-300px)]">
+      <div className="overflow-hidden border border-gray-200 rounded-lg mb-3 flex-grow">
+        <div className="overflow-y-auto absolute-bottom h-full">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50 sticky top-0">
               <tr>
@@ -189,8 +193,8 @@ export const PietanzeContent: React.FC<PietanzeContentProps> = ({
         </div>
       </div>
 
-      {/* Sezione di aggiunta all'ordine */}
-      <div className="mt-4 p-4 border border-gray-200 rounded-md">
+      {/* Sezione di aggiunta all'ordine - Questa parte sarà fissa in basso */}
+      <div className="flex-shrink-0 border border-gray-200 rounded-md p-4 bg-white">
         {successMessage && (
           <div className="mb-4 bg-green-50 border border-green-200 text-green-700 p-3 rounded-md">
             {successMessage}

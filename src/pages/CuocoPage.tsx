@@ -59,6 +59,13 @@ const CuocoPage: FC = () => {
       id: selectedOrdine.ordine.id,
       payload: { stato: nuovoStato },
     });
+
+    // Quando un ordine viene contrassegnato come consegnato, resetta l'ordine selezionato
+    if (nuovoStato === "consegnato") {
+      setSelectedOrdine(null);
+      setSelectedPietanza(null);
+      setLocalStato(null);
+    }
   };
 
   // Funzione per formattare la data

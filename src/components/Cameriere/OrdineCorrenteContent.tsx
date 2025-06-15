@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useOrdineById } from "../../hooks/ordini";
 import { useRistorante } from "../../hooks/ristorante";
 
@@ -8,6 +9,8 @@ interface OrdineCorrenteContentProps {
 export const OrdineCorrenteContent: React.FC<OrdineCorrenteContentProps> = ({
   ordineId,
 }) => {
+  const navigate = useNavigate();
+
   const { data: ordineCompleto, isLoading: loadingOrdine } = useOrdineById(
     ordineId || ""
   );
@@ -197,6 +200,30 @@ export const OrdineCorrenteContent: React.FC<OrdineCorrenteContentProps> = ({
             )}
           </span>
         </div>
+      </div>
+
+      {/* Invia ordine */}
+      <div className="mt-4 flex-shrink-0 items-start w-100">
+        <button
+          className={`px-5 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded font-medium ${
+            (!pietanze || pietanze.length === 0) &&
+            (!menu_fissi || menu_fissi.length === 0)
+              ? "opacity-50 cursor-not-allowed"
+              : ""
+          }`}
+          onClick={() => {
+            alert("Ordine inviato!");
+            navigate("/");
+          }}
+          disabled={
+            pietanze &&
+            pietanze.length === 0 &&
+            menu_fissi &&
+            menu_fissi.length === 0
+          }
+        >
+          Invia Ordine
+        </button>
       </div>
     </div>
   );

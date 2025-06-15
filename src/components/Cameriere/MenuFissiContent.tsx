@@ -55,7 +55,7 @@ export const MenuFissiContent: React.FC<MenuFissiContentProps> = ({
       </h2>
 
       <div className="overflow-hidden border border-gray-200 rounded-lg mb-6">
-        <div className="overflow-y-auto max-h-[calc(100vh-300px)]">
+        <div className="overflow-y-auto h-full">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50 sticky top-0">
               <tr>
