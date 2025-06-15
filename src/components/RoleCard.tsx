@@ -17,7 +17,7 @@ const RoleCard: FC<RoleCardProps> = ({ iconSrc, label, route }) => {
       }}
       className="w-lg h-56 bg-white rounded-xl items-center justify-center p-8 shadow-md flex flex-col transition-transform hover:scale-105 cursor-pointer hover:bg-gray-50 active:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
     >
-      {/* icona compatta, non si allarga più del dovuto */}
+      
       <div className="flex items-center justify-center">
         <img
           src={iconSrc}
