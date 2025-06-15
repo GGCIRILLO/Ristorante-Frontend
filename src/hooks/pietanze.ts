@@ -3,6 +3,7 @@ import {
   getPietanze,
   aggiungiPietanzaOrdine,
   aggiungiMenuFissoOrdine,
+  getRicettaCompleta,
 } from "../api/pietanze";
 
 export function usePietanze() {
@@ -49,3 +50,12 @@ export function useAggiungiMenuFissoOrdine() {
     },
   });
 }
+
+export function useRicettaByPietanzaId(id: number | string) {
+  return useQuery({
+    queryKey: ["ricetta", id],
+    queryFn: () => getRicettaCompleta(id),
+    enabled: !!id, // Only fetch if id is defined
+  });
+}
+

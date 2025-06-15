@@ -1,4 +1,4 @@
-import type { Pietanza } from "../types";
+import type { Pietanza, RicettaCompleta } from "../types";
 
 export async function getPietanze(): Promise<Pietanza[]> {
   const response = await fetch("/api/pietanze");
@@ -55,6 +55,18 @@ export async function aggiungiMenuFissoOrdine(
     throw new Error(
       `Errore nell'aggiunta del menu fisso all'ordine: ${response.status}-${response.statusText}`
     );
+  }
+
+  return response.json();
+}
+
+export async function getRicettaCompleta(
+  idPietanza: number | string
+): Promise<RicettaCompleta> {
+  const response = await fetch(`/api/pietanze/${idPietanza}/ricetta`);
+
+  if (!response.ok) {
+    throw new Error(`Errore nel caricamento della ricetta: ${response.status}`);
   }
 
   return response.json();

@@ -158,3 +158,30 @@ export const CategoriePietanze: CategoriaPietanza[] = [
   { id: 6, nome: "Dolci" },
   { id: 7, nome: "Bevande" },
 ];
+
+export interface RicettaCompleta {
+  ricetta: Ricetta;
+  ingredienti: {
+    ingrediente: Ingrediente;
+    quantita: number; // Quantità necessaria per la ricetta
+  }[];
+}
+
+// {
+//     "ricetta": {
+//         "id": 1,
+//         "nome": "Bruschetta pomodoro e basilico",
+//         "descrizione": "Fette di pane casereccio tostate e condite con pomodoro fresco, basilico e olio d oliva",
+//         "id_pietanza": 1,
+//         "tempo_preparazione": 10,
+//         "istruzioni": "Tagliare il pane a fette, tostarlo, strofinare con aglio, condire con pomodoro fresco a cubetti, basilico, sale e olio extravergine d oliva."
+//     },
+//     "ingredienti": [
+//         {
+//             "ingrediente": {
+//                 "id": 1,
+//                 "nome": "Pomodoro",
+//                 "quantita_disponibile": 49.599999999999994,
+//                 "unita_misura": "kg",
+//                 "soglia_riordino": 10
+//             },
