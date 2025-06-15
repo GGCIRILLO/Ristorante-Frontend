@@ -1,6 +1,6 @@
 /* ---------- ristorante ---------- */
 export interface Ristorante {
-  id_ristorante: number;
+  id: number;
   nome: string;
   numero_tavoli: number;
   costo_coperto: number;
@@ -8,7 +8,7 @@ export interface Ristorante {
 
 /* ---------- tavolo ---------- */
 export interface Tavolo {
-  id_tavolo: number;
+  id: number;
   max_posti: number;
   stato: "libero" | "occupato";
   id_ristorante: number;
@@ -16,7 +16,7 @@ export interface Tavolo {
 
 /* ---------- ingrediente ---------- */
 export interface Ingrediente {
-  id_ingrediente: number;
+  id: number;
   nome: string;
   quantita_disponibile: number;
   unita_misura: string;
@@ -25,15 +25,15 @@ export interface Ingrediente {
 
 /* ---------- categoria_pietanza ---------- */
 export interface CategoriaPietanza {
-  id_categoria: number;
+  id: number;
   nome: string;
 }
 
 /* ---------- pietanza ---------- */
 export interface Pietanza {
-  id_pietanza: number;
+  id: number;
   nome: string;
-  prezzo: number; // DECIMAL(10,2)
+  prezzo: number;
   id_categoria: number | null;
   disponibile: boolean;
 }
@@ -46,11 +46,11 @@ export interface Menu {
 
 /* ---------- ricetta ---------- */
 export interface Ricetta {
-  id_ricetta: number;
+  id: number;
   nome: string;
   descrizione: string;
   id_pietanza: number;
-  tempo_preparazione: number | null; // minuti
+  tempo_preparazione: number | null; // minuti, può essere null
   istruzioni: string | null;
 }
 
@@ -63,9 +63,9 @@ export interface RicettaIngrediente {
 
 /* ---------- menu_fisso ---------- */
 export interface MenuFisso {
-  id_menu: number;
+  id: number;
   nome: string;
-  prezzo: number; // DECIMAL(10,2)
+  prezzo: number;
   descrizione: string | null;
 }
 
@@ -84,7 +84,7 @@ export type StatoOrdine =
   | "pagato";
 
 export interface Ordine {
-  id_ordine: number;
+  id: number;
   id_tavolo: number;
   num_persone: number;
   data_ordine: string; // ISO timestamp
@@ -93,9 +93,9 @@ export interface Ordine {
   costo_totale: number;
 }
 
-/* ---------- dettaglio_ordine_pietanza ---------- */
-export interface DettaglioOrdinePietanza {
-  id_dettaglio: number;
+/* ---------- dettaglio_ordine ---------- */
+export interface DettaglioOrdine {
+  id: number;
   id_ordine: number;
   id_pietanza: number;
   quantita: number;
@@ -113,5 +113,5 @@ export interface Scontrino {
   costo_coperto: number;
   importo_coperto: number;
   totale_complessivo: number;
-  data_pagamento: string | null; // ISO timestamp
+  data_pagamento: string | null; // ISO timestamp, può essere null se non ancora pagato
 }
