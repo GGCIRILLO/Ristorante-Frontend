@@ -1,5 +1,5 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createOrdine } from "../api/ordini";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { createOrdine, getOrdineCompleto, getOrdini } from "../api/ordini";
 import type { Ordine } from "../types";
 
 interface CreateOrdinePayload {
@@ -16,5 +16,20 @@ export function useCreateOrdine() {
       client.invalidateQueries({ queryKey: ["ordini"] });
       client.invalidateQueries({ queryKey: ["tavoliLiberi"] });
     },
+  });
+}
+
+export function useOrdini() {
+  return useQuery({
+    queryKey: ["ordini"],
+    queryFn: getOrdini,
+  });
+}
+
+export function useOrdineById(id: number | string) {
+  return useQuery({
+    queryKey: ["ordineCorrente"],
+    queryFn: () => getOrdineCompleto(id),
+    enabled: !!id, // Only fetch if id is defined
   });
 }

@@ -4,6 +4,7 @@ interface TabItem {
   id: string;
   label: string;
   content: React.ReactNode;
+  icon?: string; // URL dell'icona SVG
 }
 
 interface TabsProps {
@@ -33,7 +34,12 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, defaultTabId }) => {
               }`}
               aria-current={activeTabId === tab.id ? "page" : undefined}
             >
-              {tab.label}
+              <div className="flex items-center">
+                {tab.icon && (
+                  <img src={tab.icon} alt="" className="w-5 h-5 mr-2" />
+                )}
+                {tab.label}
+              </div>
             </button>
           ))}
         </nav>

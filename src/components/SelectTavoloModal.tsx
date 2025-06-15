@@ -8,22 +8,22 @@ import {
 } from "@headlessui/react";
 import { useCambiaStatoTavolo, useTavoliLiberi } from "../hooks/tavoli";
 import { useCreateOrdine } from "../hooks/ordini";
-import { useNavigate } from "react-router-dom";
 import type { Tavolo } from "../types";
 
 interface SelectTavoloModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onOrdineCreato?: (ordineId: number) => void;
 }
 
 export const SelectTavoloModal: React.FC<SelectTavoloModalProps> = ({
   isOpen,
   onClose,
+  onOrdineCreato,
 }) => {
   const { data: tavoli, isLoading } = useTavoliLiberi();
   const createOrdineMutation = useCreateOrdine();
   const updateStatotavolo = useCambiaStatoTavolo();
-  const navigate = useNavigate();
 
   const [selectedTavolo, setSelectedTavolo] = useState<Tavolo | null>(null);
   const [numCoperti, setNumCoperti] = useState<number>(1);
@@ -46,10 +46,13 @@ export const SelectTavoloModal: React.FC<SelectTavoloModalProps> = ({
         idTavolo: selectedTavolo.id,
         nuovoStato: "occupato",
       });
-      
-      // Naviga alla pagina di gestione ordine dopo la creazione
-      navigate(`/cameriere/ordini/${response.id}`);
 
+      // Notifichiamo il componente genitore dell'ID dell'ordine creato
+      if (onOrdineCreato) {
+        onOrdineCreato(response.id);
+      }
+
+      // Chiudiamo la modale
       onClose();
     } catch (error) {
       console.error("Errore durante la creazione dell'ordine:", error);
@@ -128,9 +131,6 @@ export const SelectTavoloModal: React.FC<SelectTavoloModalProps> = ({
                         value={numCoperti}
                         onChange={(e) => {
                           const val = e.target.value;
-
-                          console.log("Valore input:", val);
-                          // numero valido
 
                           const n = val.toString().replace(/^0+/, "");
 

@@ -1,4 +1,4 @@
-import type { Ordine } from "../types";
+import type { Ordine, OrdineCompleto } from "../types";
 
 interface CreateOrdinePayload {
   id_tavolo: number;
@@ -19,6 +19,28 @@ export async function createOrdine(
 
   if (!response.ok) {
     throw new Error(`Errore nella creazione dell'ordine: ${response.status}`);
+  }
+
+  return response.json();
+}
+
+export async function getOrdini(): Promise<Ordine[]> {
+  const response = await fetch("/api/ordini");
+
+  if (!response.ok) {
+    throw new Error(`Errore nel caricamento degli ordini: ${response.status}`);
+  }
+
+  return response.json();
+}
+
+export async function getOrdineCompleto(
+  id: number | string
+): Promise<OrdineCompleto> {
+  const response = await fetch(`/api/ordini/${id}/completo`);
+
+  if (!response.ok) {
+    throw new Error(`Errore nel caricamento dell'ordine: ${response.status}`);
   }
 
   return response.json();

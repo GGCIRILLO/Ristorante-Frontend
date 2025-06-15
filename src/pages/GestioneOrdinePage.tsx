@@ -3,80 +3,72 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Tabs } from "../components/Tabs";
 import { SelectTavoloModal } from "../components/SelectTavoloModal";
+import { PietanzeContent } from "../components/PietanzeContent";
+import { MenuFissiContent } from "../components/MenuFissiContent";
+import { OrdineCorrenteContent } from "../components/OrdineCorrenteContent";
+import { Icons } from "../assets";
 
 const GestioneOrdinePage: FC = () => {
   const { id } = useParams<{ id: string }>();
-  console.log("ID Ordine:", id);
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [ordineCreato, setOrdineCreato] = useState<boolean>(Boolean(id));
 
-  // Se non c'è un ID nell'URL, mostra la modale
+  // Stato locale per l'ID dell'ordine
+  const [ordineId, setOrdineId] = useState<string | null>(id || null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [ordineCreato, setOrdineCreato] = useState<boolean>(Boolean(ordineId));
+
+  // Se non c'è un ID dell'ordine, mostra la modale
   useEffect(() => {
-    if (!id) {
+    if (!ordineId) {
       setIsModalOpen(true);
       setOrdineCreato(false);
     } else {
       setIsModalOpen(false);
       setOrdineCreato(true);
     }
-  }, [id]);
+  }, [ordineId]);
+
+  // Callback che viene chiamata quando un nuovo ordine viene creato dalla modale
+  const handleOrdineCreato = (nuovoOrdineId: number) => {
+    setOrdineId(String(nuovoOrdineId));
+    setOrdineCreato(true);
+  };
 
   // Gestisce la chiusura della modale
   const handleCloseModal = () => {
-    if (!ordineCreato) {
-      // Se l'utente chiude la modale senza creare un ordine, torna alla home
-      navigate("/");
-    } else {
-      setIsModalOpen(false);
-    }
+    setIsModalOpen(false);
   };
 
   const tabs = [
     {
       id: "pietanze",
       label: "Pietanze",
-      content: (
-        <div className="p-4">
-          <h2 className="text-lg font-medium text-gray-700">
-            Pietanze del menu
-          </h2>
-          <p className="text-gray-500 mt-2">Contenuto in fase di sviluppo...</p>
-        </div>
-      ),
+      icon: Icons.pietanze,
+      content: <PietanzeContent ordineId={ordineId} />,
     },
     {
       id: "menu_fissi",
       label: "Menu Fissi",
-      content: (
-        <div className="p-4">
-          <h2 className="text-lg font-medium text-gray-700">
-            Menu Fissi disponibili
-          </h2>
-          <p className="text-gray-500 mt-2">Contenuto in fase di sviluppo...</p>
-        </div>
-      ),
+      icon: Icons.menu,
+      content: <MenuFissiContent ordineId={ordineId} />,
     },
     {
       id: "ordine_corrente",
       label: "Ordine Corrente",
-      content: (
-        <div className="p-4">
-          <h2 className="text-lg font-medium text-gray-700">
-            Riepilogo ordine #{id}
-          </h2>
-          <p className="text-gray-500 mt-2">Contenuto in fase di sviluppo...</p>
-        </div>
-      ),
+      icon: Icons.ordine,
+      content: <OrdineCorrenteContent ordineId={ordineId} />,
     },
   ];
 
   return (
     <div className="min-h-screen bg-gray-100">
       <header className="top-0 z-10 h-16 bg-[#0080c8] flex items-center shadow-md px-4">
-        <h1 className="ml-4 text-xl font-bold text-white">
+        <button
+          onClick={() => navigate("/")}
+          className="text-white font-bold text-lg mr-4"
+        >
           GESTIONE ORDINI - CAMERIERE
-        </h1>
+        </button>
       </header>
 
       <main className="container mx-auto py-6 px-4">
@@ -114,13 +106,23 @@ const GestioneOrdinePage: FC = () => {
               <p className="text-lg text-gray-600">
                 Seleziona un tavolo per iniziare l'ordine
               </p>
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              >
+                Seleziona Tavolo
+              </button>
             </div>
           </div>
         )}
       </main>
 
       {/* Modale per la selezione del tavolo */}
-      <SelectTavoloModal isOpen={isModalOpen} onClose={handleCloseModal} />
+      <SelectTavoloModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onOrdineCreato={handleOrdineCreato}
+      />
     </div>
   );
 };

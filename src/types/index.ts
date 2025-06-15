@@ -103,6 +103,39 @@ export interface DettaglioOrdine {
   id_menu: number | null;
 }
 
+/* ---------- dettaglio ordine con più informazioni ---------- */
+export interface DettaglioOrdineCompleto extends DettaglioOrdine {
+  nome_pietanza: string;
+  prezzo_pietanza: number;
+  nome_menu?: string;
+}
+
+/* ---------- nuovi tipi per ordini completi ---------- */
+export interface DettaglioPietanza {
+  id: number;
+  id_ordine: number;
+  pietanza: Pietanza;
+  quantita: number;
+  parte_di_menu: boolean;
+  id_menu: number | null;
+}
+
+export interface DettaglioMenuFisso {
+  menu: MenuFisso;
+  pietanze: DettaglioPietanza[];
+}
+
+export interface OrdineCompleto {
+  ordine: Ordine;
+  pietanze: DettaglioPietanza[];
+  menu_fissi?: DettaglioMenuFisso[];
+}
+
+export interface MenuFissoCompleto {
+  menu: MenuFisso;
+  pietanze: Pietanza[];
+}
+
 /* ---------- scontrino ---------- */
 export interface Scontrino {
   id_ordine: number;
@@ -115,3 +148,13 @@ export interface Scontrino {
   totale_complessivo: number;
   data_pagamento: string | null; // ISO timestamp, può essere null se non ancora pagato
 }
+
+export const CategoriePietanze: CategoriaPietanza[] = [
+  { id: 1, nome: "Antipasti" },
+  { id: 2, nome: "Primi" },
+  { id: 3, nome: "Secondi" },
+  { id: 4, nome: "Contorni" },
+  { id: 5, nome: "Insalate" },
+  { id: 6, nome: "Dolci" },
+  { id: 7, nome: "Bevande" },
+];
