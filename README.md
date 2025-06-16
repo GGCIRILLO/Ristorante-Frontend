@@ -1,7 +1,7 @@
 # 🍽️ Ristorante Frontend
 
 Frontend per l'applicazione di gestione ristorante, sviluppato con React, TypeScript e Vite.
-Progetto realizzato come parte del corso di **Ingegneria del Software**
+Progetto realizzato come parte del corso di **Ingegneria del Software**. Servito dall'api a [Ristorante-api](https://github.com/GGCIRILLO/Ristorante-api).
 
 ## 📂 Struttura del progetto
 
