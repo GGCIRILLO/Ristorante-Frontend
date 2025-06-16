@@ -3,6 +3,7 @@ import {
   createOrdine,
   getAllOrdiniCompleti,
   getOrdineCompleto,
+  getScontrinoByTavolo,
   updateOrdine,
 } from "../api/ordini";
 import type { Ordine } from "../types";
@@ -52,5 +53,13 @@ export function useUpdateOrdine() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["ordini"] });
     },
+  });
+}
+
+export function useScontrinoByTavolo(idTavolo: number) {
+  return useQuery({
+    queryKey: ["scontrino"],
+    queryFn: () => getScontrinoByTavolo(idTavolo),
+    enabled: !!idTavolo, // Only fetch if idTavolo is defined
   });
 }

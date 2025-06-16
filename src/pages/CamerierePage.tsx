@@ -67,7 +67,7 @@ const CamerierePage: FC = () => {
           onClick={() => navigate("/")}
           className="text-white font-bold text-lg mr-4"
         >
-          GESTIONE ORDINI - CAMERIERE
+          GESTIONE RISTORANTE - Cameriere
         </button>
       </header>
 

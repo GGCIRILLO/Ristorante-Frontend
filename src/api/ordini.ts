@@ -1,4 +1,4 @@
-import type { Ordine, OrdineCompleto } from "../types";
+import type { Ordine, OrdineCompleto, Scontrino } from "../types";
 
 interface CreateOrdinePayload {
   id_tavolo: number;
@@ -63,6 +63,20 @@ export async function updateOrdine(
   if (!response.ok) {
     throw new Error(
       `Errore nell'aggiornamento dell'ordine: ${response.status}`
+    );
+  }
+
+  return response.json();
+}
+
+export async function getScontrinoByTavolo(
+  idTavolo: number
+): Promise<Scontrino> {
+  const response = await fetch(`/api/ordini/tavolo/${idTavolo}/scontrino`);
+
+  if (!response.ok) {
+    throw new Error(
+      `Errore nel caricamento dello scontrino: ${response.status}`
     );
   }
 

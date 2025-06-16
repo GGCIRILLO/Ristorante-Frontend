@@ -12,7 +12,6 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/cameriere" element={<CamerierePage />} />
-          <Route path="/cameriere/ordini/:id" element={<CamerierePage />} />
           <Route path="/cuoco" element={<CuocoPage />} />
           <Route path="/cassiere" element={<CassierePage />} />
           <Route path="/direttore" element={<DirettorePage />} />

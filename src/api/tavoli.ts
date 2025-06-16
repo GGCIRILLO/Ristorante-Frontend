@@ -10,6 +10,18 @@ export async function getTavoliLiberi(): Promise<Tavolo[]> {
   return response.json();
 }
 
+export async function getTavoliOccupati(): Promise<Tavolo[]> {
+  const response = await fetch("/api/tavoli/occupati");
+
+  if (!response.ok) {
+    throw new Error(
+      `Errore nel caricamento dei tavoli occupati: ${response.status}`
+    );
+  }
+
+  return response.json();
+}
+
 export async function cambiaStatoTavolo(
   idTavolo: number,
   nuovoStato: "libero" | "occupato"

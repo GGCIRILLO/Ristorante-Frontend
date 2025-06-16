@@ -29,6 +29,8 @@ export function useAggiungiPietanzaOrdine() {
     onSuccess: () => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: ["ordineCorrente"] });
+      queryClient.invalidateQueries({ queryKey: ["ingredientiDaRiordinare"] });
+      queryClient.invalidateQueries({ queryKey: ["ingredienti"] });
     },
   });
 }
@@ -47,6 +49,8 @@ export function useAggiungiMenuFissoOrdine() {
     onSuccess: () => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: ["ordineCorrente"] });
+      queryClient.invalidateQueries({ queryKey: ["ingredientiDaRiordinare"] });
+      queryClient.invalidateQueries({ queryKey: ["ingredienti"] });
     },
   });
 }
@@ -58,4 +62,3 @@ export function useRicettaByPietanzaId(id: number | string) {
     enabled: !!id, // Only fetch if id is defined
   });
 }
-
