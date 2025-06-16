@@ -85,19 +85,19 @@ Il cameriere può selezionare i tavoli, visualizzare i menù fissi e le pietanze
 
 ### 👨‍🍳 Cuoco
 
-Il cuoco visualizza gli ordini da preparare, può consultare le ricette e aggiornare lo stato degli ordini in preparazione o consegnati.
+Il cuoco visualizza gli ordini da preparare, può consultare le ricette e aggiornare lo stato degli ordini (in preparazione, pronto o consegnato).
 
 ![Interfaccia cuoco](src/assets/images/cuoco.png)
 
 ### 💰 Cassiere
 
-Il cassiere gestisce i pagamenti, emette scontrini e può visualizzare lo stato dei tavoli occupati.
+Il cassiere gestisce i pagamenti, emette scontrini e registra i pagamenti. Può visualizzare lo stato dei tavoli occupati.
 
 ![Interfaccia cassiere](src/assets/images/cassa.png)
 
 ### 👔 Direttore
 
-Il direttore può visualizzare report sugli ingredienti, monitorare le statistiche del ristorante e gestire il personale.
+Il direttore può visualizzare report sugli ingredienti esauriti e da riordinare.
 
 ![Interfaccia direttore](src/assets/images/direttore.png)
 
@@ -186,8 +186,9 @@ In ambiente di produzione, il frontend utilizza la variabile d'ambiente `VITE_AP
 | ![Selezione tavolo](src/assets/images/selezione_tavolo.png) | Selezione del tavolo da parte del cameriere |
 | ![Pietanze](src/assets/images/pietanze_all.png)             | Elenco delle pietanze disponibili           |
 | ![Menù fissi](src/assets/images/menu_fissi.png)             | Visualizzazione dei menù fissi disponibili  |
-| ![Ricetta](src/assets/images/ricetta.png)                   | Dettaglio ricetta per il cuoco              |
 | ![Ordine corrente](src/assets/images/ordine_corrente.png)   | Visualizzazione dell'ordine in corso        |
+| ![Ricetta](src/assets/images/ricetta.png)                   | Dettaglio ricetta per il cuoco              |
+
 
 ## 🔧 Comandi utili
 
