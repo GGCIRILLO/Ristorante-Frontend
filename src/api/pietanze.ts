@@ -60,31 +60,6 @@ export async function aggiungiMenuFissoOrdine(
   return response.json();
 }
 
-export async function addBevandaOrdine(
-  idOrdine: string | number,
-  idPietanza: number,
-  quantita: number
-) {
-  const response = await fetch(`/api/pietanze/ordine/${idOrdine}/bevanda`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      id_pietanza: idPietanza,
-      quantita: quantita,
-    }),
-  });
-
-  if (!response.ok) {
-    throw new Error(
-      `Errore nell'aggiunta della bevanda all'ordine: ${response.status}-${response.statusText}`
-    );
-  }
-
-  return response.json();
-}
-
 export async function getRicettaCompleta(
   idPietanza: number | string
 ): Promise<RicettaCompleta> {
