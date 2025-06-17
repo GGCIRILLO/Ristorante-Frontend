@@ -38,12 +38,6 @@ export interface Pietanza {
   disponibile: boolean;
 }
 
-/* ---------- menu (relazione ristorante ↔ pietanza) ---------- */
-export interface Menu {
-  id_ristorante: number;
-  id_pietanza: number;
-}
-
 /* ---------- ricetta ---------- */
 export interface Ricetta {
   id: number;
@@ -69,15 +63,11 @@ export interface MenuFisso {
   descrizione: string | null;
 }
 
-/* ---------- composizione_menu_fisso ---------- */
-export interface ComposizioneMenuFisso {
-  id_menu: number;
-  id_pietanza: number;
-}
 
 /* ---------- ordine ---------- */
 export type StatoOrdine =
   | "in_attesa"
+  | "confermato"
   | "in_preparazione"
   | "pronto"
   | "consegnato"
@@ -93,24 +83,8 @@ export interface Ordine {
   costo_totale: number;
 }
 
-/* ---------- dettaglio_ordine ---------- */
-export interface DettaglioOrdine {
-  id: number;
-  id_ordine: number;
-  id_pietanza: number;
-  quantita: number;
-  parte_di_menu: boolean;
-  id_menu: number | null;
-}
 
-/* ---------- dettaglio ordine con più informazioni ---------- */
-export interface DettaglioOrdineCompleto extends DettaglioOrdine {
-  nome_pietanza: string;
-  prezzo_pietanza: number;
-  nome_menu?: string;
-}
 
-/* ---------- nuovi tipi per ordini completi ---------- */
 export interface DettaglioPietanza {
   id: number;
   id_ordine: number;

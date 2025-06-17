@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useOrdineById } from "../../hooks/ordini";
+import { useOrdineById, useUpdateOrdine } from "../../hooks/ordini";
 import { useRistorante } from "../../hooks/ristorante";
 
 interface OrdineCorrenteContentProps {
@@ -17,9 +17,21 @@ export const OrdineCorrenteContent: React.FC<OrdineCorrenteContentProps> = ({
 
   const { data: ristorante } = useRistorante();
 
+  const updateOrdineMutation = useUpdateOrdine();
+
   // Formatta il prezzo per la visualizzazione
   const formatPrice = (price: number): string => {
     return price.toFixed(2).replace(".", ",") + " €";
+  };
+
+  const handleInviaOrdine = () => {
+    if (!ordineCompleto) return;
+    updateOrdineMutation.mutate({
+      id: ordineCompleto.ordine.id,
+      payload: { stato: "confermato" },
+    });
+    alert("Ordine inviato!");
+    navigate("/");
   };
 
   if (loadingOrdine) {
@@ -211,10 +223,7 @@ export const OrdineCorrenteContent: React.FC<OrdineCorrenteContentProps> = ({
               ? "opacity-50 cursor-not-allowed"
               : ""
           }`}
-          onClick={() => {
-            alert("Ordine inviato!");
-            navigate("/");
-          }}
+          onClick={handleInviaOrdine}
           disabled={
             pietanze &&
             pietanze.length === 0 &&

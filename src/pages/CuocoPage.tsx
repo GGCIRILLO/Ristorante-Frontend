@@ -31,9 +31,9 @@ const CuocoPage: FC = () => {
     }
   }, [selectedOrdine]);
 
-  // Filtriamo gli ordini escludendo quelli pagati
+  // Filtriamo gli ordini escludendo quelli pagati e in attesa
   const ordiniDaPreparare =
-    ordini?.filter((ordine) => ordine.ordine.stato !== "pagato") || [];
+    ordini?.filter((ordine) => ordine.ordine.stato !== "in_attesa") || [];
 
   // Funzione per selezionare un ordine
   const handleSelectOrdine = (ordine: OrdineCompleto) => {
