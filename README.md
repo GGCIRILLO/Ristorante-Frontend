@@ -204,3 +204,10 @@ pnpm lint:fix       # Corregge automaticamente i problemi di lint
 pnpm build          # Compila il progetto per la produzione
 pnpm preview        # Visualizza anteprima della build di produzione
 ```
+
+## 🔮 Implementazioni future
+
+1. Il Cameriere puo decidere se gestire un ordine esistente ancora in attesa o crearne uno nuovo.
+2. Passaggio delle note al cuoco
+3. Generazione PDF dello scontrino
+4. Export .csv degli ingredienti esauriti
