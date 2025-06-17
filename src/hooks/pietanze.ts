@@ -4,6 +4,7 @@ import {
   aggiungiPietanzaOrdine,
   aggiungiMenuFissoOrdine,
   getRicettaCompleta,
+  addBevandaOrdine,
 } from "../api/pietanze";
 
 export function usePietanze() {
@@ -46,6 +47,27 @@ export function useAggiungiMenuFissoOrdine() {
       idOrdine: string | number;
       idMenuFisso: number;
     }) => aggiungiMenuFissoOrdine(idOrdine, idMenuFisso),
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries({ queryKey: ["ordineCorrente"] });
+      queryClient.invalidateQueries({ queryKey: ["ingredientiDaRiordinare"] });
+      queryClient.invalidateQueries({ queryKey: ["ingredienti"] });
+    },
+  });
+}
+
+export function useAggiungiBevandaOrdine() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({
+      idOrdine,
+      idPietanza,
+      quantita,
+    }: {
+      idOrdine: string | number;
+      idPietanza: number;
+      quantita: number;
+    }) => addBevandaOrdine(idOrdine, idPietanza, quantita),
     onSuccess: () => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: ["ordineCorrente"] });

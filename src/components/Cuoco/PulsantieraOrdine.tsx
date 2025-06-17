@@ -73,9 +73,13 @@ export const PulsantieraOrdine: FC<PulsantieraOrdineProps> = ({
 
       <button
         onClick={onOpenModal}
-        disabled={!selectedPietanza}
+        disabled={
+          !selectedPietanza || selectedPietanza.pietanza.id_categoria === 7
+        }
         className={`px-5 py-2 bg-slate-700 hover:bg-slate-800 text-white rounded font-medium ${
-          !selectedPietanza ? "opacity-50 cursor-not-allowed" : ""
+          !selectedPietanza || selectedPietanza.pietanza.id_categoria === 7
+            ? "opacity-50 cursor-not-allowed"
+            : ""
         }`}
       >
         Visualizza Dettagli

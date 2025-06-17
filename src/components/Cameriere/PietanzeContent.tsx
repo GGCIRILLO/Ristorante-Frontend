@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { usePietanze, useAggiungiPietanzaOrdine } from "../../hooks/pietanze";
+import {
+  usePietanze,
+  useAggiungiPietanzaOrdine,
+  useAggiungiBevandaOrdine,
+} from "../../hooks/pietanze";
 import { CategoriePietanze, type Pietanza } from "../../types";
 
 interface PietanzeContentProps {
@@ -31,6 +35,9 @@ export const PietanzeContent: React.FC<PietanzeContentProps> = ({
   // Hook per aggiungere la pietanza all'ordine
   const aggiungiMutation = useAggiungiPietanzaOrdine();
 
+  // Hook per aggiungere una bevanda all'ordine
+  const aggiungiBevandaMutation = useAggiungiBevandaOrdine();
+
   // Resetta i messaggi dopo 3 secondi
   useEffect(() => {
     if (successMessage || errorMessage) {
@@ -59,13 +66,20 @@ export const PietanzeContent: React.FC<PietanzeContentProps> = ({
   const handleAggiungiPietanza = async () => {
     if (!selectedPietanza || !ordineId) return;
 
-    try {
-      await aggiungiMutation.mutateAsync({
-        idOrdine: ordineId,
-        idPietanza: selectedPietanza.id,
-        quantita,
-      });
+    const payload = {
+      idOrdine: ordineId,
+      idPietanza: selectedPietanza.id,
+      quantita,
+    };
 
+    try {
+      if (selectedPietanza.id_categoria === 7) {
+        // bevanda
+        await aggiungiBevandaMutation.mutateAsync(payload);
+      } else {
+        // pietanza normale
+        await aggiungiMutation.mutateAsync(payload);
+      }
       setSuccessMessage(`${selectedPietanza.nome} aggiunto all'ordine.`);
       setQuantita(1); // Reset quantità
       setNote(""); // Reset note
